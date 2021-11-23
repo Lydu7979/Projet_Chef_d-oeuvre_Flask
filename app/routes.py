@@ -25,3 +25,4 @@ def Log():
 
 def connet():
     return render_template('connection.html', methods=["GET", "POST"])
+
