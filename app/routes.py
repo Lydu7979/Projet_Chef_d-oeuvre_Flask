@@ -12,9 +12,13 @@ from app.models import UserModel
 app2 = Flask(__name__)
 
 @app2.route('/', methods=["GET", "POST"])
+def home_page():
+	return render_template('home.html')
 
+@app2.route('/', methods=["GET", "POST"])
 def index():
     return render_template('base.html')
+
 
 @app2.route('/login')
 
