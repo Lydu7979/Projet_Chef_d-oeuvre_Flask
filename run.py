@@ -29,6 +29,11 @@ from statsmodels.tsa.arima_model import ARIMAResults
 import datetime 
 from Pages_db.Admin import admin
 
+mod = pickle.load(open('modèle_ARIMA_Prix3.pkl', 'rb'))
+			
+
+mod2 = pickle.load(open('modèle_ARIMA_Production3.pkl', 'rb'))
+
 app2 = Flask(__name__)
 
 
