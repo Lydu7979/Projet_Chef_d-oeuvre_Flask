@@ -23,10 +23,10 @@ def index():
 @app2.route('/login')
 
 def Log():
-    return render_template('login.html', methods=["GET", "POST"])
+	return render_template("login.html", title='Sign In')
 
 @app2.route('/connection')
 
 def connet():
-    return render_template('connection.html', methods=["GET", "POST"])
+    return render_template('register.html', methods=["GET", "POST"])
 
