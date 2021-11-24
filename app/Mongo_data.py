@@ -4,7 +4,7 @@ import pymongo
 import pandas as pd
 
 
-class mongo():
+class mongo(object):
 
 
     client = get_client_mongodb()
