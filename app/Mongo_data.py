@@ -16,6 +16,9 @@ class mongo(object):
                               'Température maximale en °C', 'précipitations en mm','Ensoleillement en min', 'Rafales (vitesse du vent) en km/h','catégorie tomates'])
     DT.rename(columns={"Production quantité \ntonne(s)": "Production quantité tonne(s)"},inplace=True)
     DT.to_csv('DATA/TMN.csv',index = False)
+    
+
+
 
 
 
