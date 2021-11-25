@@ -198,8 +198,6 @@ def graph_pro_ARIMA1():
 
 def graph_pro_ARIMA2():
     fig15 = plt.figure(figsize=(10,5))
-    forcast2=pd.read_csv('Forecast2.csv')	
-    forcast2.rename(columns={"Unnamed: 0": "Date",'Production dans '+ str(n) +" "+'jours':"Production quantité tonne(s)"},inplace=True)
     plt.plot(data2, label="production (valeurs observées)", color = 'gold')
     plt.plot(forcast2, label='production dans '+ str(n) +" "+'jours', color = 'blue')
     plt.title("Représentation de la production avec les données prédites")
