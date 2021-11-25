@@ -9,6 +9,7 @@ from flask import Flask,  jsonify, request, render_template, redirect, url_for
 from app import app2, db, bcrypt
 from app.models import UserModel
 
+
 app2 = Flask(__name__)
 
 @app2.route('/', methods=["GET", "POST"])

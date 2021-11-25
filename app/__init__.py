@@ -8,6 +8,7 @@ from flask_wtf.csrf import CSRFProtect
 from flask_mail import Mail
 from flask_bcrypt import Bcrypt
 from werkzeug.security import generate_password_hash
+from flask_bootstrap import Bootstrap 
 
 app2 = Flask(__name__)
 
@@ -19,6 +20,7 @@ csrf = CSRFProtect()
 login = LoginManager()
 login.login_view = "users.login"
 bcrypt = Bcrypt()
+bootstrap = Bootstrap()
 
 from app import routes
 
