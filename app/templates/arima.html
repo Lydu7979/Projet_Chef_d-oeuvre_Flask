@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+
+    <div align="center">
+        <img src="{{url_for('static/images', filename='Représentation du prix au kilo et de la production.png')}}">
+    </div>
+
+
+        <!-- graphiques pour le prix-->
+    <div align="center">
+        <img src="{{url_for('static/images', filename='Données prédites(Prix).png')}}">
+    </div>
+
+    <div align="center">
+        <img src="{{url_for('static/images', filename='Représentation du prix (données prédites).png')}}">
+    </div>
+
+    <div align="center">
+        <img src="{{url_for('static/images', filename='Représentation du prix (données prédites et données prédites).png')}}">
+    </div>
+
+          <!-- graphiques pour le production-->
+    <div align="center">
+        <img src="{{url_for('static/images', filename='Données prédites(Production).png')}}">
+    </div>
+
+    <div align="center">
+        <img src="{{url_for('static/images', filename='Représentation de la production (données prédites).png')}}">
+    </div>
+
+    <div align="center">
+        <img src="{{url_for('static/images', filename='Représentation de la production (données prédites et données prédites).png')}}">
+    </div>
+
+
+{% endblock %}

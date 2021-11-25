@@ -10,7 +10,7 @@ from flask_bcrypt import Bcrypt
 from werkzeug.security import generate_password_hash
 from flask_bootstrap import Bootstrap 
 
-app2 = Flask(__name__)
+app = Flask(__name__)
 
 db = SQLAlchemy()
 migrate = Migrate()

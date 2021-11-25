@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+
+    <div align="center">
+        <img src="{{url_for('static/images', filename='Représentation du prix au kilo et de la production.png')}}">
+    </div>
+
+
+        <!-- graphique pour le prix-->
+
+    <div align="center">
+        <img src="{{url_for('static/images', filename='Représentation du prix au kilo.png')}}">
+    </div>
+
+
+          <!-- graphique pour le production-->
+
+    <div align="center">
+        <img src="{{url_for('static/images', filename='Représentation de la production.png')}}">
+    </div>
+
+
+{% endblock %}
