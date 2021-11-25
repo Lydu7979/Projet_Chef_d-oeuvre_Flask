@@ -28,6 +28,7 @@ import pickle
 from statsmodels.tsa.arima_model import ARIMAResults
 import datetime 
 from Pages_db.Admin import admin
+from app import db
 
 mod = pickle.load(open('modèle_ARIMA_Prix3.pkl', 'rb'))
 			
@@ -36,8 +37,16 @@ mod2 = pickle.load(open('modèle_ARIMA_Production3.pkl', 'rb'))
 
 app2 = Flask(__name__)
 
+app2.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///<user>.db'
+app2.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app2.secret_key = 'xyzdrrrretetetetetete'
 
+  
+app2.run(host='localhost', port=5000)
 
+@app2.before_first_request
+def create_all():
+    db.create_all()
 
 
 if __name__ == "__main__":
