@@ -23,15 +23,12 @@ import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 
-@app.route('/', methods=["GET", "POST"])
-def home_page():
-	return render_template('home.html')
 
 @app.route('/', methods=["GET", "POST"])
 def index():
     return render_template('base.html')
 
-
+"""
 @app.route('/login')
 def login():
     
@@ -75,5 +72,5 @@ def logout():
     logout_user()
     return redirect(url_for('home'), title='Sign out')
     
-
+"""
 

@@ -10,3 +10,4 @@ pytest
 statsmodels
 hashlib
 sqlite3
+keras 

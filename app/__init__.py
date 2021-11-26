@@ -1,3 +1,4 @@
+"""
 import flask_monitoringdashboard as dashboard
 from flask import Flask, redirect, render_template, flash, url_for
 from flask_sqlalchemy import SQLAlchemy
@@ -24,3 +25,4 @@ bootstrap = Bootstrap()
 
 from app import routes
 
+"""
