@@ -1,11 +1,18 @@
 from flask import Flask, jsonify, request, render_template, redirect, url_for, send_file, flash
 from wtforms import Form, BooleanField, StringField, PasswordField, validators, SubmitField
-from flask_login import current_user, login_user, logout_user, login_required 
-
+from flask_login import current_user, login_user, logout_user, login_required, UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash 
+from flask_sqlalchemy import SQLAlchemy
+import os
+import jwt
+from time import time
+from datetime import datetime
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'you-will-never_guess'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data_users.db'
+db = SQLAlchemy(app)
 
 class RegisterForm(Form):
     username = StringField('Username', [validators.Length(min=3, max=40)])
@@ -22,6 +29,8 @@ class  LoginForm(Form):
                                           validators.EqualTo('confirm', message ='Passwords must match')])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Login')
+
+
 
 
 @app.route("/")
