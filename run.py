@@ -1,4 +1,8 @@
 from flask import Flask, jsonify, request, render_template, redirect, url_for, send_file, flash
+from utils.MG import data, data_prix, data_pro, day, mg
+from utils.arima import graph_prix_ARIMA1, graph_prix_ARIMA2, graph_pro_ARIMA1, graph_pro_ARIMA2, predict_prix_ARIMA, predict_production_ARIMA
+from utils.data_viz_1 import graph_prix, graph_pro, graph_u
+from utils.lstm import graph_pred_prix_lstm, graph_pred_pro_lstm
 from wtforms import Form, BooleanField, StringField, PasswordField, validators, SubmitField
 from flask_login import current_user, login_user, logout_user, login_required, UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash 
@@ -7,6 +11,7 @@ import os
 import jwt
 from time import time
 from datetime import datetime
+from utils import *
 
 app = Flask(__name__)
 
@@ -68,4 +73,58 @@ def dashboard():
 @app.route('/application')
 @login_required
 def application():
+    print("Choice of Number of days")
+    day()
+
+    print("Mongo DataBase")
+    mg()
+
+    print("Data loading")
+    data()
+
+    print("Data price and data production")
+    d = ["Price","Production"]
+    if d == "Price":
+        data_prix
+    else:
+        data_pro
+
+    print("Data Visualisation")
+    g = ['Price and Production',"Price","Production"]
+    if g == 'Price and Production':
+        graph_u()
+
+    elif g == "Price":
+        graph_prix
+    
+    else:
+        graph_pro
+
+    print("Modelisation")
+    M = ['ARIMA','LSTM']
+    p = ['Price','Production']
+    c = ['Table','Chart','All Chart']
+    if M == 'ARIMA':
+        if c == 'Table':
+            if p == 'Price':
+                predict_prix_ARIMA()
+            else:
+                predict_production_ARIMA()
+        if c == 'Chart':
+            if p == 'Price':
+                graph_prix_ARIMA1()
+            else:
+                graph_pro_ARIMA1()
+
+        if c == 'All Chart':
+            if p == 'Price':
+                graph_prix_ARIMA2()
+            else:
+                graph_pro_ARIMA2()
+    if M == 'LSTM':
+        if p == 'Price':
+            graph_pred_prix_lstm()
+        else:
+            graph_pred_pro_lstm()
+
     return render_template('application.html')
