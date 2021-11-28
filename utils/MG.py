@@ -32,7 +32,11 @@ def data():
     return Pop3 
 
 def data_prix():
-    return data.filter(['prix moyen au kg'])
+    d3 = data()
+    d1 = d3['prix moyen au kg']
+    return d1
 
 def data_pro():
-    return data.filter(['Production quantité tonne(s)'])
+    d3 = data()
+    d2 = d3['Production quantité tonne(s)']
+    return d2
