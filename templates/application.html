@@ -9,13 +9,31 @@
             <form>
                 <div class="form-group">
                   <label for="nbdays">Input the number of days for the predictions (1-30) </label>
-                  <input type="number" min="1" max="30" value="7" class="form-control" id="nbdays" placeholder="Number of days">
+                  <!--<input type="number" min="1" max="30" value="7" class="form-control" id="nbdays" placeholder="Number of days">-->
+                  <b-form-input id="nbdays" v-model="value" value = 7 type="range" min="1" max="30" step = 1></b-form-input>
+                  <div class="mt-2">The choose number of days is: {{ value }}</div>
                 </div>
                 <!--<div class="form-group">
                   <label for="exampleInputPassword1">Password</label>
                   <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </div>-->
                 <button type="submit" class="btn btn-default">Submit</button>
+                <div class="radio">
+                  <label><input type="radio" name="optradio" checked>Graph(Price and Production)</label>
+                </div>
+                <div class="radio">
+                  <label><input type="radio" name="optradio">Graph(Price only)</label>
+                </div>
+                <div class="radio">
+                  <label><input type="radio" name="optradio">Graph(Production only)</label>
+                </div>
+                <div class="radio">
+                  <label><input type="radio" name="optradio" checked> predictions with ARIMA</label>
+                </div>
+                <div class="radio">
+                  <label><input type="radio" name="optradio">predictions with LSTM</label>
+                </div>
+                
              </form>
             <br>
             
@@ -24,3 +42,4 @@
     </div>
 </div>
 {% endblock %}
+

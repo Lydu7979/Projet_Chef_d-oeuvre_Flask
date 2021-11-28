@@ -17,6 +17,7 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'you-will-never_guess'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data_users.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class RegisterForm(Form):
