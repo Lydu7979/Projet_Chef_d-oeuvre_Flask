@@ -7,6 +7,7 @@ def day():
     n = input("Choose the number of days for predictions, between 1 and 30:")
     print(type(n))
     period = int(n)
+    print(period)
     return period
 
 def mg():
