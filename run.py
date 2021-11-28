@@ -1,8 +1,8 @@
 from flask import Flask, jsonify, request, render_template, redirect, url_for, send_file, flash
-from utils.MG import data, data_prix, data_pro, day, mg
-from utils.arima import graph_prix_ARIMA1, graph_prix_ARIMA2, graph_pro_ARIMA1, graph_pro_ARIMA2, predict_prix_ARIMA, predict_production_ARIMA
-from utils.data_viz_1 import graph_prix, graph_pro, graph_u
-from utils.lstm import graph_pred_prix_lstm, graph_pred_pro_lstm
+#from utils.MG import data, data_prix, data_pro, day, mg
+#from utils.arima import graph_prix_ARIMA1, graph_prix_ARIMA2, graph_pro_ARIMA1, graph_pro_ARIMA2, predict_prix_ARIMA, predict_production_ARIMA
+#from utils.data_viz_1 import graph_prix, graph_pro, graph_u
+#from utils.lstm import graph_pred_prix_lstm, graph_pred_pro_lstm
 from wtforms import Form, BooleanField, StringField, PasswordField, validators, SubmitField
 from flask_login import current_user, login_user, logout_user, login_required, UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash 
