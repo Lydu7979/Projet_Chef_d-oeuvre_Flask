@@ -20,7 +20,7 @@ forcast.rename(columns={"Unnamed: 0": "Date",'Prix dans '+ str(day()) +" "+'jour
 forcast['Date'] = pd.to_datetime(forcast['Date'],infer_datetime_format=True)
 forcast.index=forcast['Date']
 del forcast['Date']
-fig1 = pd.concat([data_prix,forcast])
+
 
 #production
 forecast2,err,ci = mod2.forecast(steps= day(), alpha = 0.05)
@@ -33,7 +33,7 @@ forcast2.head()
 forcast2['Date'] = pd.to_datetime(forcast2['Date'],infer_datetime_format=True)
 forcast2.index=forcast2['Date']
 del forcast2['Date']
-fig4 = pd.concat([data_pro,forcast2])
+
 
 #Prédiction du prix
 
