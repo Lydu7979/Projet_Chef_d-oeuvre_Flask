@@ -1,4 +1,4 @@
-from utils.MG import data_prix, data_pro, day
+from utils.MG import data_prix, data_pro, day, data
 from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
 from keras.models import load_model
@@ -15,21 +15,31 @@ mod3 = load_model('prediction_prix_tomate_lstm_model_v1.h5')
 
 mod4 = load_model('prediction_production_tomate_lstm_model_v1.h5')
 
+D1 = pd.read_csv("./DATA/TMN.csv", parse_dates=['Date'], dayfirst= True)
+D1.sort_values(by=['Date'], inplace=True, ascending=True) 
+D1 =  D1.set_index(['Date'])
+D2 = D1.resample("D").mean()
+D2 = D2.interpolate()
+Pop3 = D2[['prix moyen au kg','Production quantité tonne(s)']]
+
+lstm_prix = Pop3.filter(['prix moyen au kg'])
+lstm_pro = Pop3.filter(['Production quantité tonne(s)'])
+
 seq = 7 # nombre dobservations dans une séquence
 n_fe = 1 # nombre de features pour le modèle
 
-x = len(data_prix) - 14
+x = len(lstm_prix) - 14
 
-train = data_prix().iloc[:x]
-test = data_prix().iloc[x:]
+train = lstm_prix.iloc[:x]
+test = lstm_prix.iloc[x:]
 scaler.fit(train)
 train_s = scaler.transform(train)
 test_s = scaler.transform(test)
 
-x2 = len(data_pro) - 14
+x2 = len(lstm_pro) - 14
 
-train2 = data_pro().iloc[:x2]
-test2 = data_pro().iloc[x2:]
+train2 = lstm_pro.iloc[:x2]
+test2 = lstm_pro.iloc[x2:]
 scaler2.fit(train2)
 train_s2 = scaler2.transform(train2)
 test_s2 = scaler2.transform(test2)
