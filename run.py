@@ -4,7 +4,7 @@ from flask import Flask, jsonify, request, render_template, redirect, url_for, s
 #from utils.data_viz_1 import graph_prix, graph_pro, graph_u
 #from utils.lstm import graph_pred_prix_lstm, graph_pred_pro_lstm
 from wtforms import Form, BooleanField, StringField, PasswordField, validators, SubmitField
-from flask_login import current_user, login_user, logout_user, login_required, UserMixin
+#from flask_login import current_user, login_user, logout_user, login_required, UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash 
 from flask_sqlalchemy import SQLAlchemy
 import os
@@ -26,13 +26,13 @@ class RegisterForm(Form):
     password = PasswordField('Password', [validators.DataRequired(),
                                           validators.Length(min=6, max=40), 
                                           validators.EqualTo('confirm', message ='Passwords must match')])
-    confirm = PasswordField('Confirm Password again')
+    confirm = PasswordField('Confirm password')
 
 class  LoginForm(Form):
     email = StringField('Email', validators=[validators.Length(min=6, max=100)])
     password = PasswordField('Password', [validators.DataRequired(),
                                           validators.Length(min=6, max=40), 
-                                          validators.EqualTo('confirm', message ='Passwords must match')])
+                                          ])
     
     submit = SubmitField('Login')
 
@@ -63,10 +63,10 @@ def signup():
         return redirect(url_for('signin'))
     return render_template('signup.html', form =form)
 
-@app.route('/logout')
+'''@app.route('/logout')
 def logout():
 	logout_user()
-	return redirect(url_for('base'))
+	return redirect(url_for('base'))'''
 
 
 @app.route('/dashboard')
@@ -74,8 +74,5 @@ def dashboard():
     return render_template('dashboard.html')
 
 @app.route('/application')
-@login_required
 def application():
-
-
     return render_template('application.html')

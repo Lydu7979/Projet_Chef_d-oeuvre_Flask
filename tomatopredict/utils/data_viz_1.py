@@ -1,11 +1,13 @@
 from utils.MG import data, data_prix, data_pro
 from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
+import os
 
 D = data()
 data1 = data_prix()
 data2 = data_pro()
 scaler = MinMaxScaler()
+
 
 def graph_u():
     D[['prix_n', 'production_n']] = scaler.fit_transform(D[['prix moyen au kg', 'Production quantité tonne(s)']])
@@ -15,8 +17,9 @@ def graph_u():
     plt.title("Représentation du prix au kilo et de la production")
     plt.legend(loc="upper right")
     plt.grid(True)
-    fig.savefig("static/images/Représentation du prix au kilo et de la production.png")
-    return fig
+    chemin = os.path.join(os.getcwd(),'tomatopredict','static','images','price_and_production.png')
+    fig.savefig(chemin)
+    return 'price_and_production.png'
 
 def graph_prix():
     fig2 = plt.figure(figsize=(10,5))
@@ -26,8 +29,9 @@ def graph_prix():
     plt.ylabel("Prix")
     plt.legend(loc="upper right")
     plt.grid(True)
-    fig2.savefig("static/images/Représentation du prix au kilo.png")
-    return fig2
+    chemin = os.path.join(os.getcwd(),'tomatopredict','static','images','price.png')
+    fig2.savefig(chemin)
+    return 'price.png'
 
 def graph_pro():
     fig3 = plt.figure(figsize=(10,5))
@@ -37,5 +41,7 @@ def graph_pro():
     plt.ylabel("Production")
     plt.legend(loc="upper right")
     plt.grid(True)
-    fig3.savefig("static/images/Représentation de la production.png")
-    return fig3
+    chemin = os.path.join(os.getcwd(),'tomatopredict','static','images','production.png')
+    fig3.savefig(chemin)
+    return 'production.png'
+    
