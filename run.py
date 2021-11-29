@@ -33,7 +33,7 @@ class  LoginForm(Form):
     password = PasswordField('Password', [validators.DataRequired(),
                                           validators.Length(min=6, max=40), 
                                           validators.EqualTo('confirm', message ='Passwords must match')])
-    remember_me = BooleanField('Remember Me')
+    
     submit = SubmitField('Login')
 
 
@@ -50,6 +50,8 @@ def signin():
     form = LoginForm(request.form)
     if request.method == 'POST' and form.validate():
         return redirect(url_for('application'))
+    else:
+        flash('Login Unsuccessful. Please check username and password', 'danger')
     return render_template("signin.html", form=form)
 
 
