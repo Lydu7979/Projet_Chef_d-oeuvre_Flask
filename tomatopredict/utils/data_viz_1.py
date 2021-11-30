@@ -29,8 +29,8 @@ def graph_prix():
     plt.ylabel("Prix")
     plt.legend(loc="upper right")
     plt.grid(True)
-    chemin = os.path.join(os.getcwd(),'tomatopredict','static','images','price.png')
-    fig2.savefig(chemin)
+    chemin2 = os.path.join(os.getcwd(),'tomatopredict','static','images','price.png')
+    fig2.savefig(chemin2)
     return 'price.png'
 
 def graph_pro():
@@ -41,7 +41,7 @@ def graph_pro():
     plt.ylabel("Production")
     plt.legend(loc="upper right")
     plt.grid(True)
-    chemin = os.path.join(os.getcwd(),'tomatopredict','static','images','production.png')
-    fig3.savefig(chemin)
+    chemin3 = os.path.join(os.getcwd(),'tomatopredict','static','images','production.png')
+    fig3.savefig(chemin3)
     return 'production.png'
     

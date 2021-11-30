@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-6">
             <h1 class="text-center">Number of days for prediction</h1>
-            <form>
+            <form action = "/data-viz" method = "POST"> 
                 <div class="form-group">
                   <label for="nbdays">Input the number of days for the predictions (1-30) </label>
                   <input type="number" min="1" max="30" value="7" class="form-control" id="nbdays" placeholder="Number of days">
@@ -14,31 +14,57 @@
                   <label for="nbdays">Input the number of days for the predictions (1-30)</label>
                   <input type="range" class="form-control-range" min="1" max="30" id="formControlRange">
                 </div> -->
-
-                <button type="submit" class="btn btn-default">Submit</button>
+              <h5>Which graph do you want to see?</h5>
                 <div class="radio">
-                  <label><input type="radio" name="optradio" checked>Graph(Price and Production)</label>
+                  <label><input type="radio" name="optradio1"> Graph(Price and Production)</label>
                 </div>
                 <div class="radio">
-                  <label><input type="radio" name="optradio">Graph(Price only)</label>
+                  <label><input type="radio" name="optradio2"> Graph(Price only)</label>
                 </div>
                 <div class="radio">
-                  <label><input type="radio" name="optradio">Graph(Production only)</label>
+                  <label><input type="radio" name="optradio3"> Graph(Production only)</label>
+                </div>
+              <h5>Predictions for the price and production of tomatoes</h5>
+              <h6>predictions with ARIMA for price</h6>
+              <div class="button" role="button" aria-label="predictions with ARIMA for price">
+                <button type="button" class="btn btn-primary">predicted_values_table</button>
+                <button type="button" class="btn btn-primary">predicted_values_graph</button>
+                <button type="button" class="btn btn-primary">all_values_graph</button>
+              </div>
+              <h6>predictions with ARIMA for prodcution</h6>
+              <div class="button" role="button" aria-label="predictions with ARIMA for production">
+                <button type="button" class="btn btn-primary">predicted_values_table</button>
+                <button type="button" class="btn btn-primary">predicted_values_graph</button>
+                <button type="button" class="btn btn-primary">all_values_graph</button>
+              </div>
+              <h6>predictions with LSTM for price</h6>
+              <div class="button" role="button" aria-label="predictions with LSTM for price">
+                <button type="button" class="btn btn-primary">predicted_values(price)_table(LSTM)</button>
+                <button type="button" class="btn btn-primary">predicted_values(price)_graph(LSTM)</button>
+              </div>
+              <h6>predictions with LSTM for production</h6>
+              <div class="button" role="button" aria-label="predictions with LSTM for production">
+                <button type="button" class="btn btn-primary">predicted_values(production)_table(LSTM)</button>
+                <button type="button" class="btn btn-primary">predicted_values(production)_graph(LSTM)</button>
+              </div>
+               <!-- <div class="radio">
+                  <label><input type="radio" name="optradio"> predictions with ARIMA</label>                     
                 </div>
                 <div class="radio">
-                  <label><input type="radio" name="optradio" checked> predictions with ARIMA</label>
-                </div>
-                <div class="radio">
-                  <label><input type="radio" name="optradio">predictions with LSTM</label>
-                </div>
-                
+                  <label><input type="radio" name="optradio"> predictions with LSTM</label>
+                </div> -->
+                <button type="submit" class="btn btn-default">Submit</button> 
              </form>
             <br>
             
         </div>
+        {% if flag!='Nok' %}
         <div class="col-md-6">
           <input type="image" src="{{url_for('static', filename='images/'+graph)}}" alt="Graph" >
         </div>
+        {% else %}
+        Choose a graph
+        {% endif %}
     </div>
 </div>
 {% endblock %}

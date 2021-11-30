@@ -7,6 +7,7 @@ import time
 timestr = time.strftime("%Y%m%d")
 import pandas as pd
 import numpy as np
+import os
 
 scaler = MinMaxScaler()
 scaler2 = MinMaxScaler()
@@ -63,10 +64,12 @@ def graph_pred_prix_lstm():
     Pred_prix.loc[:,'prix prédit'] = pred1[:,0]
     Pred_prix.loc[:,'prix actuel'] = test["prix moyen au kg"]
     Ppi = Pred_prix['prix prédit'].tail(future)
-    Ppi.savefig("static/images/Tableau des données prédites pour le prix(LSTM).png")
+    chemin12 = os.path.join(os.getcwd(),'tomatopredict','static','images','predicted_values(price)_table(LSTM).png')
+    Ppi.savefig(chemin12)
     Ppi2 = Ppi.plot(title = 'Prédiction du prix dans '+ str(future) +" "+' jours')
-    Ppi2.savefig("static/images/Représentation graphique des données prédites pour le prix(LSTM).png")
-    return Ppi2
+    chemin10 = os.path.join(os.getcwd(),'tomatopredict','static','images','predicted_values(price)_graph(LSTM).png')
+    Ppi2.savefig(chemin10)
+    return 'predicted_values(price)_table(LSTM).png' and 'predicted_values(price)_graph(LSTM).png'
 
 def graph_pred_pro_lstm():
     prediction_pro = []
@@ -88,9 +91,11 @@ def graph_pred_pro_lstm():
     Pred_pro.loc[:,'production prédite'] = pred2[:,0]
     Pred_pro.loc[:,'production actuelle'] = test2["Production quantité tonne(s)"]
     Po = Pred_pro['production prédite'].tail(future)
-    Po.savefig("static/images/Tableau des données prédites pour la production(LSTM).png")
-    Po2 = Po.plot(title = 'Prédiction du prix dans '+ str(future) +" "+' jours')
-    Po2.savefig("static/images/Représentation graphique des données prédites pour le production(LSTM).png")
-    return Po2
+    chemin13 = os.path.join(os.getcwd(),'tomatopredict','static','images','predicted_values(production)_table(LSTM).png')
+    Po.savefig(chemin13)
+    Po2 = Po.plot(title = 'Prédiction de la production dans '+ str(future) +" "+' jours')
+    chemin11 = os.path.join(os.getcwd(),'tomatopredict','static','images','predicted_values(production)_graph(LSTM).png')
+    Po2.savefig(chemin11)
+    return 'predicted_values(production)_table(LSTM).png' and  'predicted_values(production)_graph(LSTM).png'
 
 

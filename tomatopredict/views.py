@@ -42,3 +42,21 @@ def dashboard():
 def application():
     g1 = data_viz_1.graph_u()
     return render_template('application.html', graph = g1)
+
+@app.route('/data-viz', methods = ['GET', 'POST'])
+def essai():
+    optradio1 = request.form.get('optradio1')
+    print(optradio1)
+    optradio2 = request.form.get('optradio2')
+    print(optradio2)
+    optradio3 = request.form.get('optradio3')
+    print(optradio3)
+    if optradio1 == "on":
+        g1 = data_viz_1.graph_u()
+    elif optradio2 == "on":
+        g1 = data_viz_1.graph_prix()
+    elif optradio3 == "on":
+        g1 = data_viz_1.graph_pro()
+    else:
+        return render_template('application.html',graph = "Nok", flag = "Nok")
+    return render_template('application.html',graph = g1)
