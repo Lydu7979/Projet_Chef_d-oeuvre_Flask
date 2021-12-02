@@ -366,3 +366,37 @@ if __name__ == "__main__":
             graph_pred_prix_lstm()
         else:
             graph_pred_pro_lstm()"""
+
+"""elif optradio11 == "on":
+        g1 = arima.predict_prix_ARIMA()
+    elif optradio12 == "on":
+        g1 = arima.graph_prix_ARIMA1()
+    elif optradio13 == "on":
+        g1 = arima.graph_prix_ARIMA2()
+    elif optradio14 == "on":
+        g1 = arima.predict_production_ARIMA()
+    elif optradio15 == "on":
+        g1 = arima.graph_pro_ARIMA1()
+    elif optradio16 == "on":
+        g1 = arima.graph_pro_ARIMA2()
+    elif optradio21 == "on":
+        g1 = lstm.graph_pred_prix_lstm()
+    elif optradio22 == "on":
+        g1 = lstm.graph_pred_pro_lstm()"""
+
+optradio11 = request.form.get('optradio11')
+print(optradio11)
+optradio12 = request.form.get('optradio12')
+print(optradio12)
+optradio13 = request.form.get('optradio13')
+print(optradio13)
+optradio14 = request.form.get('optradio14')
+print(optradio14)
+optradio15 = request.form.get('optradio15')
+print(optradio15)
+optradio16 = request.form.get('optradio16')
+print(optradio16)
+optradio21 = request.form.get('optradio21')
+print(optradio21)
+optradio22 = request.form.get('optradio22')
+print(optradio22)

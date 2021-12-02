@@ -88,7 +88,7 @@ def essai():
     elif optradio21 == "on":
         g1 = lstm.graph_pred_prix_lstm()
     elif optradio22 == "on":
-        g1 = lstm.graph_pred_pro_lstm()
+        g1 = lstm.graph_pred_pro_lstm()   
     else:
         return render_template('application.html',graph = "Nok", flag = "Nok")
     return render_template('application.html',graph = g1)
