@@ -29,7 +29,7 @@ lstm_pro = Pop3.filter(['Production quantité tonne(s)'])
 seq = 7 # nombre dobservations dans une séquence
 n_fe = 1 # nombre de features pour le modèle
 
-x = len(lstm_prix) - 14
+x = len(lstm_prix) * 0.7
 
 train = lstm_prix.iloc[:x]
 test = lstm_prix.iloc[x:]
@@ -37,7 +37,7 @@ scaler.fit(train)
 train_s = scaler.transform(train)
 test_s = scaler.transform(test)
 
-x2 = len(lstm_pro) - 14
+x2 = len(lstm_pro) * 0.7
 
 train2 = lstm_pro.iloc[:x2]
 test2 = lstm_pro.iloc[x2:]

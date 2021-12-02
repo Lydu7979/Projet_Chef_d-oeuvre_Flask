@@ -1,7 +1,7 @@
 from tomatopredict import app
 from flask import request, render_template, redirect, url_for, flash
 from forms import RegisterForm, LoginForm
-from utils import data_viz_1
+from utils import data_viz_1, arima, lstm
 
 
 @app.route("/")
@@ -51,12 +51,44 @@ def essai():
     print(optradio2)
     optradio3 = request.form.get('optradio3')
     print(optradio3)
+    optradio11 = request.form.get('optradio11')
+    print(optradio11)
+    optradio12 = request.form.get('optradio12')
+    print(optradio12)
+    optradio13 = request.form.get('optradio13')
+    print(optradio13)
+    optradio14 = request.form.get('optradio14')
+    print(optradio14)
+    optradio15 = request.form.get('optradio15')
+    print(optradio15)
+    optradio16 = request.form.get('optradio16')
+    print(optradio16)
+    optradio21 = request.form.get('optradio21')
+    print(optradio21)
+    optradio22 = request.form.get('optradio22')
+    print(optradio22)
     if optradio1 == "on":
         g1 = data_viz_1.graph_u()
     elif optradio2 == "on":
         g1 = data_viz_1.graph_prix()
     elif optradio3 == "on":
         g1 = data_viz_1.graph_pro()
+    elif optradio11 == "on":
+        g1 = arima.predict_prix_ARIMA()
+    elif optradio12 == "on":
+        g1 = arima.graph_prix_ARIMA1()
+    elif optradio13 == "on":
+        g1 = arima.graph_prix_ARIMA2()
+    elif optradio14 == "on":
+        g1 = arima.predict_production_ARIMA()
+    elif optradio15 == "on":
+        g1 = arima.graph_pro_ARIMA1()
+    elif optradio16 == "on":
+        g1 = arima.graph_pro_ARIMA2()
+    elif optradio21 == "on":
+        g1 = lstm.graph_pred_prix_lstm()
+    elif optradio22 == "on":
+        g1 = lstm.graph_pred_pro_lstm()
     else:
         return render_template('application.html',graph = "Nok", flag = "Nok")
     return render_template('application.html',graph = g1)
