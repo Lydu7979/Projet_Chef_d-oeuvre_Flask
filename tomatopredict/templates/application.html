@@ -8,7 +8,7 @@
             <form action = "/data-viz" method = "POST"> 
                 <div class="form-group">
                   <label for="nbdays">Input the number of days for the predictions (1-30) </label>
-                  <input type="number" min="1" max="30" value="7" class="form-control" id="nbdays" placeholder="Number of days">
+                  <input type="number" min="1" max="30" name="nbd" value="7" class="form-control" id="nbdays" placeholder="Number of days">
                 </div>
               <h5>Which graph do you want to see?</h5>
                 <div class="radio">
@@ -62,6 +62,15 @@
         {% if flag!='Nok' %}
         <div class="col-md-6">
           <input type="image" src="{{url_for('static', filename='images/'+graph)}}" alt="Graph" >
+          <div style="display: flex;">
+            <div>
+             {{ table_prix|safe }} 
+          </div>
+          <div class="ml-2">
+            {{ table_prod|safe }}
+          </div>
+        </div>
+          
         </div>
         {% else %}
         Choose a graph

@@ -400,3 +400,27 @@ optradio21 = request.form.get('optradio21')
 print(optradio21)
 optradio22 = request.form.get('optradio22')
 print(optradio22)
+
+
+"""def day():
+    n = input("Choose the number of days for predictions, between 1 and 30:")
+    period = int(n)
+    print(period)
+    return period"""
+
+logging.basicConfig(filename='record.log', level=logging.DEBUG, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+ 
+
+import pickle
+from datetime import date
+import time
+timestr = time.strftime("%Y%m%d")
+from keras.models import load_model
+
+
+
+
+mod = pickle.load(open('modèle_ARIMA_Prix3.pkl', 'rb'))			
+mod2 = pickle.load(open('modèle_ARIMA_Production3.pkl', 'rb'))
+mod3 = load_model('prediction_prix_tomate_lstm_model_v1.h5')
+mod4 = load_model('prediction_production_tomate_lstm_model_v1.h5')

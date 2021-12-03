@@ -12,40 +12,29 @@ mod = pickle.load(open('modèle_ARIMA_Prix3.pkl', 'rb'))
 mod2 = pickle.load(open('modèle_ARIMA_Production3.pkl', 'rb'))
 
 #prix
-forecast,err,ci = mod.forecast(steps= day(), alpha = 0.05)
-nprix = pd.DataFrame({"Date":pd.date_range(start= date.today(), periods=day(), freq='D'), 'prix dans '+ str(day()) +" "+'jours' :list(forecast)})
-df_forecast = pd.DataFrame({'Prix dans '+  str(day()) +" "+'jours' :forecast},index=pd.date_range(start=date.today(), periods=day(), freq='D'))
-df_forecast.to_csv("Forecast.csv")
-forcast=pd.read_csv('Forecast.csv')	
-forcast.rename(columns={"Unnamed: 0": "Date",'Prix dans '+ str(day()) +" "+'jours':"prix moyen au kg"},inplace=True)
-forcast['Date'] = pd.to_datetime(forcast['Date'],infer_datetime_format=True)
-forcast.index=forcast['Date']
-del forcast['Date']
+def prix_a(nbd):
+    forecast,err,ci = mod.forecast(steps= nbd, alpha = 0.05)
+    df_forecast = pd.DataFrame({'Prix dans '+  str(nbd) +" "+'jours' :forecast},index=pd.date_range(start=date.today(), periods=nbd, freq='D'))
+    return df_forecast
 
 
 #production
-forecast2,err,ci = mod2.forecast(steps= day(), alpha = 0.05)
-df_forecast2 = pd.DataFrame({'Production dans '+ str(day()) +" "+'jours' :forecast2},index=pd.date_range(start=date.today(),periods=day(), freq='D'))
-n_pro = pd.DataFrame({"Date":pd.date_range(start=date.today(), periods=day(), freq='D'),'production dans '+ str(day()) +" "+'jours' :list(forecast2)})
-df_forecast2.to_csv("Forecast2.csv")
-forcast2=pd.read_csv('Forecast2.csv')
-forcast2.rename(columns={"Unnamed: 0": "Date",'Production dans '+ str(day()) +" "+'jours':"Production quantité tonne(s)"},inplace=True)
-forcast2.head()
-forcast2['Date'] = pd.to_datetime(forcast2['Date'],infer_datetime_format=True)
-forcast2.index=forcast2['Date']
-del forcast2['Date']
+def pro_a(nbd):
+    forecast2,err,ci = mod2.forecast(steps= nbd, alpha = 0.05)
+    df_forecast2 = pd.DataFrame({'Production dans '+ str(nbd) +" "+'jours' :forecast2},index=pd.date_range(start=date.today(),periods=nbd, freq='D'))
+    return df_forecast2
 
 
 #Prédiction du prix
 
-def predict_prix_ARIMA():
+def predict_prix_ARIMA(df_forecast):
     chemin4 = os.path.join(os.getcwd(),'tomatopredict','static','images','predicted_values(price)_table(ARIMA).png')
-    nprix.savefig(chemin4)
+    df_forecast.savefig(chemin4)
     return 'predicted_values(price)_table(ARIMA).png'
 
-def graph_prix_ARIMA1():
+def graph_prix_ARIMA1(df_forecast):
     fig12 = plt.figure(figsize=(10,5))
-    plt.plot(forcast, label='prix dans '+ str(day()) +" "+'jours', color = 'darkviolet')
+    plt.plot(df_forecast, label='prix dans '+ str(day()) +" "+'jours', color = 'darkviolet')
     plt.title("Représentation du prix pour les données prédites")
     plt.xlabel("Jour")
     plt.ylabel("Prix")
@@ -55,10 +44,10 @@ def graph_prix_ARIMA1():
     fig12.savefig(chemin5)
     return 'predicted_values(price)_graph(ARIMA).png'
 
-def graph_prix_ARIMA2():
+def graph_prix_ARIMA2(df_forecast):
     fig13 = plt.figure(figsize=(10,5))
     plt.plot(data_prix(), label="prix (valeurs observées)", color = 'darkviolet')
-    plt.plot(forcast, label='prix dans '+ str(day()) +" "+'jours', color = 'blue')
+    plt.plot(df_forecast, label='prix dans '+ str(day()) +" "+'jours', color = 'blue')
     plt.title("Représentation du prix avec les données prédites")
     plt.xlabel("Année")
     plt.ylabel("Prix")
@@ -71,14 +60,14 @@ def graph_prix_ARIMA2():
 
 #Prédiction de la production
 
-def predict_production_ARIMA():
+def predict_production_ARIMA(df_forecast2):
     chemin7 = os.path.join(os.getcwd(),'tomatopredict','static','images','predicted_values(production)_table(ARIMA).png')
-    n_pro.savefig(chemin7)
+    df_forecast2.savefig(chemin7)
     return 'predicted_values(production)_table(ARIMA).png'
 
-def graph_pro_ARIMA1():
+def graph_pro_ARIMA1(df_forecast2):
     fig14 = plt.figure(figsize=(10,5))
-    plt.plot(forcast2, label='production dans '+ str(day()) +" "+'jours', color = 'gold')
+    plt.plot(df_forecast2, label='production dans '+ str(day()) +" "+'jours', color = 'gold')
     plt.title("Représentation de la production pour les données prédites")
     plt.xlabel("Jour")
     plt.ylabel("Prix")
@@ -88,10 +77,10 @@ def graph_pro_ARIMA1():
     fig14.savefig(chemin8)
     return 'predicted_values(production)_graph(ARIMA).png'
 
-def graph_pro_ARIMA2():
+def graph_pro_ARIMA2(df_forecast2):
     fig15 = plt.figure(figsize=(10,5))
     plt.plot(data_pro(), label="production (valeurs observées)", color = 'gold')
-    plt.plot(forcast2, label='production dans '+ str(day()) +" "+'jours', color = 'blue')
+    plt.plot(df_forecast2, label='production dans '+ str(day()) +" "+'jours', color = 'blue')
     plt.title("Représentation de la production avec les données prédites")
     plt.xlabel("Année")
     plt.ylabel("Production")
