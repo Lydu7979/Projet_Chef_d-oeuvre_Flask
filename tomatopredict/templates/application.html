@@ -41,13 +41,21 @@
               <div class="radio">
                 <label><input type="radio" name="optradio16"> all_values_table</label>
               </div>
-              <h6>predictions with LSTM for price and for production</h6>
+              <h6>predictions with LSTM for price</h6>
               <div class="radio">
-                <label><input type="radio" name="optradio21"> predicted_values_price</label>
+                <label><input type="radio" name="optradio21"> predicted_values_table</label>
               </div>
               <div class="radio">
-                <label><input type="radio" name="optradio22"> predicted_values_production</label>
+                <label><input type="radio" name="optradio22"> predicted_values_graph</label>
               </div>
+              <h6>predictions with LSTM for production</h6>
+              <div class="radio">
+                <label><input type="radio" name="optradio23"> predicted_values_table</label>
+              </div>
+              <div class="radio">
+                <label><input type="radio" name="optradio24"> predicted_values_graph</label>
+              </div>
+
                <!-- <div class="radio">
                   <label><input type="radio" name="optradio"> predictions with ARIMA</label>                     
                 </div>
@@ -73,7 +81,7 @@
           
         </div>
         {% else %}
-        Choose a graph
+        Pick a graph or a table 
         {% endif %}
     </div>
 </div>
