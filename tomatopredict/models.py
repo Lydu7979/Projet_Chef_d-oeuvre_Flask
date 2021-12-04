@@ -7,6 +7,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import jwt
 
+db = SQLAlchemy()
+
 ACCESS = {'user': 0,'admin': 1}
 
 class UserModel(UserMixin, db.Model):
@@ -72,7 +74,7 @@ class UserModel(UserMixin, db.Model):
         return UserModel.query.filter_by(username=username).first()
 
     @staticmethod
-    def create_user(username, plaintext_password, email):
+    def create_user(username, text_password, email):
         user_exists = UserModel.query.filter_by(email=email).first()
         if user_exists:
             return False
@@ -80,7 +82,7 @@ class UserModel(UserMixin, db.Model):
         user = UserModel()
 
         user.username = username
-        user.hashed_password = user.set_password(plaintext_password)
+        user.hashed_password = user.set_password(text_password)
         user.email = email
 
         db.session.add(user)

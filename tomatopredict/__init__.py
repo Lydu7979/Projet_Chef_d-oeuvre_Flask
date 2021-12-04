@@ -20,7 +20,7 @@ app.config['SECRET_KEY'] = 'you-will-never_guess'
 
 
 
-'''DATABASE = os.path.join(os.getcwd(),'tomatopredict','data','data.db')
+DATABASE = os.path.join(os.getcwd(),'tomatopredict','data','data.db')
 
 def get_db():
     db = getattr(g, '_database', None)
@@ -32,7 +32,7 @@ def get_db():
 def close_connection(exception):
     db = getattr(g, '_database', None)
     if db is not None:
-        db.close()'''
+        db.close()
 
 import views
 

@@ -1,4 +1,4 @@
-from tomatopredict import app, get_db
+#from tomatopredict import app, get_db
 from flask import request, render_template, redirect, url_for, flash, Flask
 from forms import RegisterForm, LoginForm
 from utils import data_viz_1
